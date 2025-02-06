@@ -1,0 +1,1699 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+:root {
+    --mainColor: #3E3F46;
+    --lightBlack: #54555C;
+    --light-bolderBlack: #1E1F22;
+    --rightAnswer: limegreen;
+    --wrongAnswer: #BB0000;
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.fa-check {
+    color: lime;
+}
+
+.fa-times {
+    color: red;
+}
+
+/* ------------------------------ MAIN PAGE ------------------------------ */
+.mainPage {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--mainColor);
+    transform-style: preserve-3d;
+}
+
+.mainPage .requestPage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .requestBox {
+        height: auto;
+        width: 400px;
+        padding: 20px 40px;
+        background-color: white;
+        display: flex;
+        border-radius: 10px;
+    }
+
+    .requestBox--btns {
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .requestBox--btn {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 5px 20px;
+        border: none;
+        box-shadow: 0 0 5px 2px gray;
+        border-radius: 5px;
+    }
+
+    .requestBox--btn:hover {
+        cursor: grab;
+        filter: brightness(0.8);
+    }
+
+    .requestBox--btn:active {
+        cursor: grabbing;
+    }
+
+    .requestBox--btnConfirm {
+        background-color: var(--wrongAnswer);
+        color: white;
+    }
+}
+
+.mainPage .gameTitle {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+    width: fit-content;
+}
+
+.mainPage .gameTitle .mainFace {
+    position: relative;
+    height: 100px;
+    width: 700px;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainPage .gameTitle .mainFace::before {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    content: "";
+    height: 50%;
+    width: 100%;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    background-color: white;
+}
+
+.mainPage .gameTitle .mainFace::after {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    content: "";
+    height: 100%;
+    width: 50px;
+    transform-origin: right;
+    transform: skewY(45deg);
+    background-color: #cccccc;
+}
+
+.mainPage .gameTitle .mainFace .mainFaceTitle {
+    font-size: 64px;
+    text-shadow: -2px -2px 6px #000000;
+    user-select: none;
+}
+
+.accessPage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.accessPage--closeBtn {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bolder;
+    top: 20px;
+    left: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+}
+
+.accessPage--closeBtn:hover {
+    cursor: grab;
+}
+
+.accessPage--closeBtn:active {
+    cursor: grabbing;
+    filter: brightness(80%);
+}
+
+.accessBox {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    padding: 20px 60px;
+    border-radius: 5px;
+
+    .accessBox--title {
+        user-select: none;
+        font-size: 48px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .accessBox--input {
+        outline: none;
+        height: fit-content;
+        width: 300px;
+        font-size: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #eeeeee;
+        box-shadow: inset 2px 3px 5px #555555,
+                    inset -2px -3px 5px #dddddd;
+        margin: 10px 0;
+    }
+
+    .accessBox--checkBtn {
+        font-size: 18px;
+        font-weight: bolder;
+        color: white;
+        padding: 10px 0;
+        background-color: limegreen;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .accessBox--checkBtn:hover {
+        cursor: grab;
+    }
+
+    .accessBox--checkBtn:active {
+        cursor: grabbing;
+        filter: brightness(80%);
+    }
+}
+/* --------------------------------------- GIFT ------------------------------- */
+.giftBoxContainer {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background-color: red; */
+    height: 400px;
+    width: 400px;
+}
+
+.giftBox {
+    position: absolute;
+    top: -20px;
+    z-index: 2;
+    /* bottom: 150px; */
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+    width: fit-content;
+}
+
+.giftBox::after {
+    content: "";
+    height: 100px;
+    width: 1000px;
+    background-color: rebeccapurple;
+}
+
+.giftBox .giftBackFace {
+    position: relative;
+    height: 350px;
+    width: 350px;
+    background-color: #cccccc;
+    transform-style: preserve-3d;
+
+    .giftTopFace {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(50px, 0) skewX(45deg);
+        transform-origin: bottom;
+        height: 50px;
+        width: 100%;
+        background-color: #bbbbbb;
+    }
+
+    .giftLeftFace {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0) skewY(45deg);
+        transform-origin: left;
+        height: 100%;
+        width: 50px;
+        background-color: #dddddd;
+    }
+
+    .giftRightFace {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(100%, 50px) skewY(45deg);
+        transform-origin: right;
+        height: 100%;
+        width: 50px;
+        background-color: #bbbbbb;
+    }
+
+    .giftMainFace {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        /* transform-origin: center; */
+        transform: translateZ(50px) translate(50px, 50px);
+        background-color: #eeeeee;
+    }
+}
+
+.giftTopFace .giftTopFaceSide {
+    height: 100%;
+    width: 50%
+} 
+
+.giftMainFace--numberBox {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(calc(-50% + 20px));
+    height: 90px;
+    width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--mainColor);
+    transition: .2s;
+}
+
+.giftMainFace--numberBox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    background-color: var(--lightBlack);
+    transform-origin: bottom;
+    transform: translate(0, -100%) skewX(45deg);
+    transition: .2s;
+}
+
+.giftMainFace--numberBox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background-color: var(--light-bolderBlack);
+    transform-origin: right;
+    transform: translate(-100%, 0) skewY(45deg);
+    transition: .2s;
+}
+
+.giftMainFace--numberBox .giftMainFace--numberBox--number {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.giftMainFace--numberBox--number > p {
+    user-select: none;
+    font-size: 30px;
+    font-weight: bolder;
+    filter: drop-shadow(0 0 2px black);
+}
+
+.giftMainFace---buttonBox {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(calc(-50% + 20px));
+    height: auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .giftMainFace---buttonBox--button {
+        position: relative;
+        height: 50px;
+        width: 50px;
+        background-color: var(--mainColor);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+    }
+}
+
+.giftMainFace---buttonBox--button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: bottom;
+    transform: translate(0, -100%) skewX(45deg);
+    height: 15px;
+    width: 100%;
+    background-color: var(--lightBlack);
+    transition: .2s;
+}
+
+.giftMainFace---buttonBox--button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right;
+    transform: translate(-100%, 0) skewY(45deg);
+    height: 100%;
+    width: 15px;
+    background-color: var(--light-bolderBlack);
+    transition: .2s;
+}
+
+.giftMainFace---buttonBox--button .giftMainFace--buttonBox--button--arrow {
+    height: 50%;
+    width: 50%;
+    background-color: white;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.giftMainFace---buttonBox--button:hover {
+    cursor: grab;
+}
+
+.giftMainFace---buttonBox--button:active {
+    transform: translateX(-15px) translateY(-15px);
+    cursor: grabbing;
+}
+
+.giftMainFace---buttonBox--button:active::before {
+    height: 0;
+}
+
+.giftMainFace---buttonBox--button:active::after {
+    width: 0;
+}
+
+.baseGift {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(calc(-50% + 20px));
+    z-index: 1;
+    height: 100px;
+    width: 650px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0 auto;
+    box-shadow: 0 10px 0 10px #dddddd;
+}
+
+.questBar {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+
+    .questBar--quest {
+        position: relative;
+        height: 120px;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eeeeee;
+        border-bottom: 5px solid white;
+
+        .questBar--questContent {
+            font-size: 48px;
+            font-weight: bolder;
+            user-select: none;
+        }
+    }
+
+    .questBar--quest:hover {
+        cursor: grab;
+        background-color: var(--mainColor);
+        box-shadow: 5px 0 5px #222222;
+
+        .questBar--questContent {
+            color: white;
+        }
+    }
+
+    .questBar--quest.done {
+        background-color: var(--mainColor);
+        box-shadow: 5px 0 5px #222222;
+
+        .questBar--questContent {
+            color: white;
+        }
+    }
+
+    .questBar--quest.done::before {
+        background-color: var(--light-bolderBlack) !important;
+    }
+
+    .questBar--quest.done::after {
+        background-color: var(--lightBlack);
+    }
+
+    .questBar--quest:active {
+        cursor: grabbing;
+    }
+
+    .questBar--quest:hover::after {
+        background-color: var(--lightBlack) !important;
+    }
+
+    .questBar--quest:hover::before {
+        background-color: var(--light-bolderBlack) !important;
+    }
+
+    .questBar--quest::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 30px;
+        background-color: #cccccc;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        border-bottom: 5px solid white;
+    }
+
+    .questBar--quest:last-child:after,
+    .questBar--quest:last-child {
+        border-bottom: none;
+    }
+
+    .questBar--quest:first-child::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 100%;
+        background-color: white;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+    }
+}
+
+.funcBtnBox {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+
+    .funcBtn {
+        position: relative;
+        height: 50px;
+        width: 90px;
+        transform: translate(0, 0);
+        background-color: #eeeeee;
+        margin-right: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+
+        i {
+            font-size: 24px;
+        }
+    }
+
+    .funcBtn::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 100%;
+        background-color: white;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+        transition: .2s;
+    }
+
+    .funcBtn::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 20px;
+        background-color: #cccccc;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        transition: .2s;
+    }
+
+    .funcBtn:hover {
+        cursor: grab;
+    }
+
+    .funcBtn:active {
+        cursor: grabbing;
+        transform: translate(-20px, -20px);
+    }
+
+    .funcBtn:active::before {
+        height: 0;
+    }
+
+    .funcBtn:active::after {
+        width: 0;
+    }
+
+}
+
+/* ---------------------------------- QUEST PAGE --------------------------- */
+.questPage {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--mainColor);
+    display: none;
+}
+
+.showdialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    opacity: 0;
+    transform: scale(0);
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+.showdialog.active {
+    opacity: 1;
+    animation: showdialogAnimate 2s ease-in forwards;
+}
+
+@keyframes showdialogAnimate {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    10% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.dialog {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 400px;
+    width: 600px;
+    padding: 20px 100px;
+    opacity: 0;
+    transform: scale(0);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px gray;
+}
+
+.showdialog.active .dialog {
+    animation: dialogAnimate 1s ease-in-out 1.5s forwards alternate;
+}
+
+@keyframes dialogAnimate {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.dialog_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    height: fit-content;
+    width: fit-content;
+    filter: drop-shadow(-5px 5px 10px black);
+}
+
+.showdialog.active .dialog_img {
+    animation: dialog_imgAnimate 2s ease-in-out 1.5s forwards alternate;
+}
+
+@keyframes dialog_imgAnimate {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+
+    15% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+    25% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    90% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+}
+
+.dialog_img > img {
+    height: 300px;
+    width: auto;
+}
+
+.dialog_content--box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+}
+
+.showdialog.active .dialog_content--box {
+    animation: dialog_content--boxAnimate 2s ease-in-out forwards 1.8s alternate;
+}
+
+@keyframes dialog_content--boxAnimate {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+
+    15% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+    25% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.dialog_content--box .dialog_content {
+    font-size: 42px;
+    font-weight: bolder;
+}
+
+.questPage .showQuest {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .questionBox {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .questionShowcase {
+        position: relative;
+        height: 450px;
+        width: 460px;
+        font-size: 24px;
+        background-color: #eeeeee;
+        padding: 15px;
+
+        .questionContent {
+            user-select: none;
+            font-size: 22px;
+        }
+    }
+
+    .questionShowcase::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 45px;
+        width: 100%;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+        background-color: white;
+    }
+
+    .questionShowcase::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 45px;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        background-color: #cccccc;
+    }
+
+    .questionBackBtn {
+        position: relative;
+        height: 90px;
+        width: 460px;
+        background-color: #eeeeee;
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+
+        .questionBackBtnContent {
+            user-select: none;
+            font-size: 36px;
+            font-weight: bolder;
+            text-shadow: -2px -2px 6px #000000;
+        }
+    }
+
+    .questionBackBtn::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 45px;
+        width: 100%;
+        background-color: white;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+        transition: .2s;
+    }
+
+    .questionBackBtn::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 45px;
+        background-color: #cccccc;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        transition: .2s;
+    }
+
+    .questionBackBtn:hover {
+        cursor: grab;
+    }
+
+    .questionBackBtn:active {
+        transform: translate(-45px, -45px);
+    }
+
+    .questionBackBtn:active::before {
+        height: 0;
+    }
+
+    .questionBackBtn:active::after {
+        width: 0;
+    }
+}
+
+.questPage .showAnswer {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .answerShocase {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .answer {
+        position: relative;
+        height: 120px;
+        width: 480px;
+        background-color: #eeeeee;
+        margin-bottom: 50px;
+        padding: 10px;
+        transition: .2s;
+
+        .answerContent {
+            user-select: none;
+            font-size: 18px;
+        }
+    }
+
+    .answer:hover {
+        cursor: grab;
+    }
+
+    .answer.right {
+        cursor: grabbing;
+        transform: translate(-30px, -30px);
+        background-color: var(--rightAnswer);
+        color: white;
+    }
+
+    .answer.right::before {
+        height: 0;
+        background-color: var(--rightAnswer);
+    }
+    
+    .answer.right::after {
+        width: 0;
+        background-color: var(--rightAnswer);
+    }
+
+    .answer.wrong {
+        cursor: grabbing;
+        transform: translate(-30px, -30px);
+        background-color: var(--wrongAnswer);
+        color: white;
+    }
+    
+    .answer.wrong::before {
+        height: 0;
+        background-color: var(--wrongAnswer);
+    }
+
+    .answer.wrong::after {
+        width: 0;
+        background-color: var(--wrongAnswer);
+    }
+
+    .answer:last-child {
+        margin-bottom: 0;
+    }
+
+    .answer::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 100%;
+        background-color: white;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+        transition: .2s;
+    }
+
+    .answer::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 30px;
+        background-color: #cccccc;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        transition: .2s;
+    }
+}
+
+.helpBox {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 0 20px;
+
+    .helpButton {
+        position: relative;
+        height: 80px;
+        width: 120px;
+        background-color: #eeeeee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+    }
+
+    .helpButton::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 100%;
+        background-color: white;
+        transform-origin: bottom;
+        transform: translate(0, -100%) skewX(45deg);
+        transition: .2s;
+    }
+
+    .helpButton::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 30px;
+        background-color: #cccccc;
+        transform-origin: right;
+        transform: translate(-100%, 0) skewY(45deg);
+        transition: .2s;
+    }
+
+    .helpButton:hover {
+        cursor: grab;
+    }
+
+    .helpButton:active {
+        cursor: grabbing;
+        transform: translate(-30px, -30px);
+    }
+
+    .helpButton:active::before {
+        height: 0;
+    }
+
+    .helpButton:active::after {
+        width: 0;
+    }
+
+    .helpButton > i {
+        font-size: 40px;
+    }
+}
+
+.helpButtonRecomment.chose {
+    transform: translate(-30px, -30px);
+    opacity: 0.5;
+}
+
+.helpButtonRecomment.chose::before {
+    height: 0 !important;
+}
+
+.helpButtonRecomment.chose::after {
+    width: 0 !important;
+}
+
+.helpButtonRemoveAWrong.chose {
+    transform: translate(-30px, -30px);
+    opacity: 0.5;
+}
+
+.helpButtonRemoveAWrong.chose::before {
+    height: 0 !important;
+}
+
+.helpButtonRemoveAWrong.chose::after {
+    width: 0 !important;
+}
+/* ------------------------------- SET QUEST PAGE ----------------------------- */
+.setQuestPage {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--mainColor);
+    display: none;
+
+    .setQuestScreen {
+        height: 100%;
+        width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .setQuest {
+        height: fit-content;
+        width: fit-content;
+        /* padding: 50px; */
+
+        .setQuestTitle {
+            height: fit-content;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .setQuestTitleContent {
+                user-select: none;
+                color: white;
+            }
+        }
+
+        .setQuestBox {
+            height: fit-content;
+            width: fit-content;
+
+            .setQuestBox--questContentBox {
+                height: fit-content;
+                width: 100%;
+            }
+
+            .questContentInput {
+                height: 150px;
+                width: 500px;
+                resize: none;
+                outline: none;
+                padding: 10px;
+                font-size: 18px;
+                border-radius: 5px;
+            }
+        }
+
+        .setQuestBox--answerContentForm {
+            height: fit-content;
+            width: fit-content;
+
+            .setQuestBox--answerContentBox {
+                height: fit-content;
+                width: fit-content;
+                display: flex;
+                align-items: center;
+
+                margin: 20px;
+            }
+
+            .setQuestBox--answerContent--title {
+                user-select: none;
+                height: fit-content;
+                width: fit-content;
+
+                p {
+                    height: 55px;
+                    width: 55px;
+                    font-size: 24px;
+                    color: white;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: black;
+                    border-radius: 50%;
+                }
+            }
+
+            .setQuestBox--answerContent {
+                height: fit-content;
+                width: fit-content;
+                padding: 0 10px;
+            }
+
+            .setQuestBox--answerContentInput {
+                outline: none;
+                resize: none;
+                height: 100px;
+                width: 400px;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .answerCheck {
+                height: 18px;
+                width: 18px;
+            }
+        }
+
+        .setQuestBtnBox {
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .setQuestBtn {
+                height: 40px;
+                width: 100px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: none;
+                font-weight: bolder;
+            }
+
+            .setQuestBtn.setQuestBtnAdd {
+                background-color: lime;
+                color: white;
+            }
+
+            .setQuestBtn:hover {
+                cursor: grab;
+            }
+
+            .setQuestBtn:active {
+                cursor: grabbing;
+                filter: brightness(80%);
+            }
+        }
+    }
+
+    .viewQuest {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px 50px;
+
+        .amountQuest {
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 2px solid white;
+        }
+
+        .amountQuestTitle {
+            user-select: none;
+            font-size: 18px;
+            font-weight: bolder;
+            color: white;
+        }
+
+        .amountQuestContent {
+            user-select: none;
+            font-size: 18px;
+            font-weight: bolder;
+            color: white;
+        }
+
+        .viewQuest--questScreen {
+            /* height: 100%; */
+            width: 100%;
+            flex: 1;
+            overflow: auto;
+        }
+
+        .viewQuest--questScreen::-webkit-scrollbar {
+            background-color: #eeeeee;
+            width: 10px;
+        }
+
+        .viewQuest--questScreen::-webkit-scrollbar-thumb {
+            background-color: #333333;
+        }
+
+        .viewQuest--questBox {
+            height: fit-content;
+            width: 100%;
+        }
+
+        .viewQuest--questBox--questContent {
+            height: fit-content;
+            width: 100%;
+            font-weight: bolder;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid white;
+            box-shadow: 0 4px 5px #222222;
+            padding: 20px;
+
+            p {
+                font-size: 18px;
+                color: white;
+            }
+
+            .deleteQuest {
+                font-size: 16px;
+                color: white;
+                font-weight: bolder;
+                padding: 10px 25px;
+                background-color: red;
+                border: none;
+                border-radius: 10px;
+                margin-left: 10px;
+            }
+
+            .deleteQuest:hover {
+                cursor: grab;
+            }
+
+            .deleteQuest:active {
+                cursor: grabbing;
+                filter: brightness(80%);
+            }
+        }
+
+        .viewQuest--questBox--answerForm {
+            height: fit-content;
+            width: 100%;
+            margin: 20px 0;
+            padding: 0 50px;
+        }
+
+        .viewQuest--questBox--answerBox {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+
+            .viewQuest--questBox--answerBox--title {
+                height: 40px;
+                width: 40px;
+                color: white;
+                font-size: 18px;
+                font-weight: bolder !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+                border: 3px solid white;
+                border-radius: 50%;
+            }
+
+            .viewQuest--questBox--answerBox--answer {
+                margin: 0 20px;
+                flex: 1;
+                color: #eeeeee;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.transferPage {
+    position: absolute;
+    z-index: 3;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    transition: .5s;
+    
+    .transferPage--leftSide {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 50%;
+        background-color: var(--mainColor);
+        transition: .5s;
+    }
+    
+    .transferPage--rightSide {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        height: 100%;
+        width: 50%;
+        background-color: var(--mainColor);
+        transition: .5s;
+    }
+}
+
+.endGame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-delay: .5s;
+}
+
+.endGameTitleBox {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    padding-bottom: 30px;
+    transition: .5s;
+
+    .endGameTitle {
+        user-select: none;
+        height: fit-content;
+        width: fit-content;
+        background-color: #eeeeee;
+        font-size: 48px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 0 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 5px black;
+    }
+}
+
+.secretGift {
+    background-color: #eeeeee;
+    height: fit-content;
+    width: 500px;
+    transform: scale(0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 20px 0;
+    transition: .5s;
+    box-shadow: 0 0 5px 5px black;
+
+    .secretGift--img {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .secretGift--img > img {
+        height: 120px;
+        user-select: none;
+    }
+
+    .secretGift--contentBox {
+        height: fit-content;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .secretGift--contentBox--title {
+        user-select: none;
+        font-size: 36px;
+    }
+    
+    .secretGift--contentBox--des {
+        user-select: none;
+        font-size: 16px;
+    }
+}
+
+.endGame--replayButtonBox {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    margin-top: 20px;
+    transition: .5s;
+
+    .endGame--replayButton {
+        height: fit-content;
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 2px black;
+        border: none;
+
+        i {
+            font-size: 24px;
+        }
+    }
+
+    .endGame--replayButton:hover {
+        cursor: grab;
+    }
+
+    .endGame--replayButton:active {
+        cursor: grabbing;
+        filter: brightness(80%);
+    }
+}
+
+.announcePage {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 100%;
+    height: fit-content;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.toastBox {
+    height: fit-content;
+    width: 400px;
+    background-color: #555555;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px 20px 20px;
+    border-left: 10px solid transparent;
+    box-shadow: 0 0 10px 2px var(--lightBlack);
+}
+
+.toastBox .toastIcon .toastIcon--i {
+    user-select: none;
+    font-size: 32px;
+    margin-right: 20px;
+}
+
+.toastBox .toastMessage {
+    user-select: none;
+    flex: 1;
+    font-size: 16px;
+    color: white;
+    font-weight: bolder;
+}
+
+.toastBox.toastActive {
+    animation: animateToast 2s ease-in-out;
+}
+
+.toastBox.toastActive.toastCheck {
+    border-left-color: limegreen;
+    .toastIcon--i {
+        color: limegreen;
+    }
+}
+
+.toastBox.toastActive.toastWarn {
+    border-left-color: orangered;
+    .toastIcon--i {
+        color: orangered;
+    }
+}
+
+/* ---------------------------- ACTIVE STATUS ------------------------ */
+.transferPage.active {
+    top: 0;
+    
+    .transferPage--leftSide {
+        left: 0;
+        transition-delay: .5s;
+    }
+    
+    .transferPage--rightSide {
+        right: 0;
+        transition-delay: .5s;
+    }
+}
+
+.giftTopFace.active {
+    animation: openGift ease-in-out 1s forwards;
+}
+
+.giftMainFace--numberBox:active {
+    transform: translateX(calc(-50%)) translateY(-20px);
+    cursor: grabbing;
+}
+
+.giftMainFace--numberBox:hover {
+    cursor: grab;
+}
+
+.giftMainFace--numberBox:active::before {
+    height: 0;
+}
+
+.giftMainFace--numberBox:active::after {
+    width: 0;
+}
+
+.transferPage.endGamePage {
+
+    .endGame {
+        transform: translate(-50%, -50%) scale(1);
+        transition-delay: .5s;
+    }
+
+    .endGameTitleBox {
+        transform: scale(1);
+        transition-delay: 1s;
+    }
+
+    .secretGift {
+        transform: scale(1);
+        transition-delay: 1.5s;
+    }
+
+    .endGame--replayButtonBox {
+        transform: scale(1);
+        transition-delay: 2s;
+    }
+}
+
+/* ------------------------------ KEYFRAMES ----------------------------- */
+@keyframes openGift {
+    50% {
+        top: 0;
+        left: 0;
+        transform: translate(0, -100%) skewX(45deg);
+        transform-origin: bottom;
+    }
+
+    80% {
+        top: 0;
+        left: 0;
+        transform: translate(0, -100%) skewX(45deg) rotateX(0deg);
+        /* transform: translate(0, -100%) skewX(0);
+        opacity: 1; */
+        transform-origin: bottom;
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+        transform: translate(0, -100%) skewX(45deg) rotateX(90deg);
+        /* transform: translate(0, 0) skewX(0);
+        opacity: 0; */
+        transform-origin: bottom;
+    }
+}
+
+@keyframes animateToast {
+    0% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(calc(-100% - 40px));
+    }
+
+    52% {
+        transform: translateX(calc(-100% - 40px)) scale(1);
+    }
+
+    55% {
+        transform: translateX(calc(-100% - 40px)) scale(1.2);
+    }
+
+    58% {
+        transform: translateX(calc(-100% - 40px)) scale(1);
+    }
+
+    90% {
+        transform: translateX(calc(-100% - 40px));
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
