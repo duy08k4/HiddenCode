@@ -67,3 +67,5 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+public/hidenCode_js/firebase_module.js
+.gitignore
